@@ -35,6 +35,7 @@ class LoginForm extends Component {
 
     handleChange(e) {
         const { name, value } = e.target;
+        console.log(this.state.password);
         this.setState({ [name]: value });
         this.setState({errMsg : null})
     }
