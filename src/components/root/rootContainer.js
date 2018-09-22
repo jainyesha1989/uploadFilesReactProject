@@ -15,6 +15,8 @@ class Root extends Component{
         
         return(<React.Fragment>
             {/* <Header /> */}
+            <Route exact  path={RoutesConstants.LOGIN.path}  render={ ()=> <Redirect to={RoutesConstants.LOGIN.component} />} />
+
             <Route  path={RoutesConstants.LOGIN.path}  component={RoutesConstants.LOGIN.component} exact/>
             <Route path={RoutesConstants.FILE_UPLOAD.path} 
                     component={RoutesConstants.FILE_UPLOAD.component} exact/>

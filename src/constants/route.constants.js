@@ -1,4 +1,4 @@
-import loginForm from '../components/login/loginFormContainer';
+import LoginForm from '../components/login/loginFormContainer';
 import fileUploadComponent from '../components/upload/fileUpload';
 import filesUploadedList from '../components/filesUploaded/filesUploadedList';
 
@@ -6,7 +6,7 @@ import filesUploadedList from '../components/filesUploaded/filesUploadedList';
 const Routes = {
     'LOGIN' : {
         path: '/Login',
-        component: loginForm
+        component: LoginForm
     },
     'FILE_UPLOAD' : {
         path: '/fileUpload',

@@ -11,12 +11,18 @@ export const onLogin = (loginData, history) => {
     return (dispatch, getState) => {
         firebase.auth().signInWithEmailAndPassword(loginData.cred.username, loginData.cred.password)
             .then((resp) => {
+                //dispatch(loginSuccess(resp))
                 dispatch(createUserSuccess(resp, loginData));
                 console.log('i am disp');
                 console.log(history);
                 history.push('/fileUpload');
             })
-            .catch((error) => dispatch(createUserFail));
+            .catch((error) =>  {
+                dispatch(createUserFail(error));
+               // dispatch(createUserSuccess(error, loginData));
+               // window.location.reload();
+            })
+            
         // dispatch({
         //     type: Constants.ON_LOGIN_SUCESS,
         //     payload: loginData
@@ -33,7 +39,7 @@ export const createUserSuccess = (resp, loginData) => {
 export const createUserFail = (error) => {
     return {
         type: Constants.ON_LOGIN_FAIL,
-        error
+        payload: error
     }
 }
 

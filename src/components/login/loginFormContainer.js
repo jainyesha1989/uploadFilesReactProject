@@ -15,7 +15,8 @@ class LoginForm extends Component {
         this.state = {
             username: '',
             password: '',
-            submitted: false //this.props.login.isLogin
+            submitted: false, //this.props.login.isLogin,
+            errMsg : this.props.login.errMsg
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -24,10 +25,18 @@ class LoginForm extends Component {
     componentDidMount() {
         firebaseApp = firebase.initializeApp(fireBaseConfig);
     }
+    
+    componentWillReceiveProps(nextProps) {
+        if (this.props.login.errMsg !== nextProps.login.errMsg) {
+            this.setState({ errMsg:  nextProps.login.errMsg });
+        }
+       }
+       
 
     handleChange(e) {
         const { name, value } = e.target;
         this.setState({ [name]: value });
+        this.setState({errMsg : null})
     }
 
     handleSubmit(e) {
@@ -41,23 +50,22 @@ class LoginForm extends Component {
             },
             isSubmitted : this.state.submitted
         }
-       // const { auth } = this.state;
         this.props.authenticationAction.onLogin(auth, this.props.history);
-        //this.props.history.push(RoutesConstants.FILE_UPLOAD.path);
-        console.log('yesha');
-       // console.log(RoutesConstants.FILE_UPLOAD.path);
-        // const { dispatch } = this.props;
-        // if (username && password) {
-        //     dispatch(userActions.login(username, password));
-        // }
+       
     }
 
     render() {
+
         const { loggingIn } = this.props;
-        const { username, password, submitted } = this.state;
+         const { username, password, submitted, errMsg } = this.state;
         return (
             <div className="col-md-6 col-md-offset-3">
                 <h2>Login</h2>
+                { this.state.errMsg &&  <div>
+               
+                    <span>{this.state.errMsg}</span>  
+                </div> 
+                }
                 <form name="form" onSubmit={this.handleSubmit}>
                     <div className={'form-group' + (submitted && !username ? ' has-error' : '')}>
                         <label htmlFor="username">Username</label>
