@@ -13,8 +13,6 @@ export const onLogin = (loginData, history) => {
             .then((resp) => {
                 //dispatch(loginSuccess(resp))
                 dispatch(createUserSuccess(resp, loginData));
-                console.log('i am disp');
-                console.log(history);
                 history.push('/fileUpload');
             })
             .catch((error) =>  {

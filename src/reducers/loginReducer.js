@@ -14,7 +14,6 @@ export default createReducer(initialState, {
   },
   [Constants.ON_LOGIN_FAIL]: (state, payload) => {
     return Object.assign({}, state, { errMsg: payload.message ,isLogin: false });
-  },
-  [Constants.ON_FILE_UPLOAD]: (state, payload) => {}
+  }
 
 });
