@@ -20,7 +20,7 @@ class Root extends Component{
             {/* <Header /> */}
             {/* <Route exact  path='/'  render={ ()=> <Redirect to={RoutesConstants.LOGIN.component} />} /> */}
 
-            <Route  path='/Login'   component={RoutesConstants.LOGIN.component} />
+            <Route  path={RoutesConstants.LOGIN.path}   component={RoutesConstants.LOGIN.component} />
             <VerifyLoggedInContainer authed={this.props.isLoggedIn}  path={RoutesConstants.FILE_UPLOAD.path} 
                     component={RoutesConstants.FILE_UPLOAD.component} />
             <VerifyLoggedInContainer authed={this.props.isLoggedIn} path={RoutesConstants.FILE_UPLOAD_LIST.path} 

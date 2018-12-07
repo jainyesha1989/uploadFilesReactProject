@@ -21,25 +21,20 @@ class fileUploadedList extends Component {
             list: []
         };
         this.showFilesUploaded = this.showFilesUploaded.bind(this);
-        this.showFilesUploaded();
+       // this.showFilesUploaded();
     }
    
     showFilesUploaded () {
-        let fileList = [];
+        let list = [];
         for (let i in this.props.files) {
-            fileList.push(<div>
+            list.push(<div>
                 { this.props.files[i]}
-                <MuiThemeProvider>
-                    <a href="#"><FontIcon
-                        className="material-icons customstyle"
-                        color={blue500}
-                        styles={{ top: 10, }}
-                    >clear</FontIcon></a>
-                </MuiThemeProvider>
             </div>
             )
         }
-        this.setState({list: fileList});
+        this.setState((list)=> {
+            return {list: list}
+        });
     }
     handleClick(e) {
         // const { name, value } = e.target;
@@ -68,11 +63,14 @@ class fileUploadedList extends Component {
         const style = {
             margin: 15,
         };
+        let namesList = this.props.files.map(function(files){
+            return <li>{files}</li>;
+          });
         return (
             <div>
                
-                <h1>Files Uploaded sucessfully RE </h1> <br></br>
-                <div>{this.state.list} </div>
+                <h2>Files Uploaded sucessfully are </h2> <br></br>
+                <div>{namesList} </div>
                 upload more files
                 <MuiThemeProvider>
                 <RaisedButton label="Upload Files" primary={true} style={style} onClick={(event) => this.handleClick(event)} />
